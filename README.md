@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Instructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Build app
+```
+yarn install
+yarn start
+```
 
-## Available Scripts
+## Dépendances
+- Framework : [React v17](https://github.com/facebook/react)
+- Router : [React Router v6](https://github.com/ReactTraining/react-router)
+- Weather data: [7timer](http://www.7timer.info/)
+- Build tools: [Create React App](https://github.com/facebook/create-react-app)
+- CSS: [Bulma](https://bulma.io/documentation/)
 
-In the project directory, you can run:
+### Configuration custom
 
-### `yarn start`
+Ce projet a été crée grâce à [Create React App](https://github.com/facebook/create-react-app).
+Pour plus d'information sur la customisation, nous vous invitons à consulter la documentation de l'outil.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Step 1 : Afficher la météo du jour pour Grenoble
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Sur la page d’une ville récupérer et afficher la météo du jour.
+- Le page d’une ville correspond au composant [`City`](./src/pages/city/City.jsx) 
+- Utiliser le [service weather](./src/api/weather.api.js) (`getCityTodayWeather`) pour récupérer la météo en function des coordonnées GPS de Grenoble lorsque le composant est créé : [`componentDidMount()`](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class)
+- Binder les données de la météo du jour avec le template (https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)
 
-### `yarn test`
+## Step 2 : Afficher la météo du jour pour toutes les villes Zenika
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Afficher toutes les villes sur la page d'accueil (https://reactjs.org/docs/lists-and-keys.html#rendering-multiple-components)
+- Utiliser les getters du [pseudo-store cities](./src/store/Cities.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (https://angular.io/guide/router#getting-route-information)
+- Appeler la méthode pour obtenir la météo du jour (`getCityTodayWeather`) via le fichier *weather.api.js* avec ces coordonnées
 
-### `yarn build`
+## Step 3 : Afficher la météo des 8 prochains jours pour chaque ville
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Via le fichier d'api *weather.api.js*, récupérer maintenant la météo des 8 prochains jours (`getCityNextWeekWeather`)
+- Binder les données avec le template 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Step 4 : Avoir la possibilité de passer en Fahrenheit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Ajouter des radios boutons, checkbox ou n’importe quoi d’autre pour choisir l’unité à afficher 
+- Créer une fonction pour retourner les degrés à afficher dans la bonne unité
+- Appliquer la fonction de conversion `F = C * 9/5 + 32`
 
-### `yarn eject`
+## Step 5 : Ajouter un page pour enregistrer une nouvelle ville
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Créer un nouveau composant dans le dossier `pages`
+- Créer dans le router, dans le fichier *App.jsx*, une route liée à ce composant 
+- Modifier le pseudo-store cities pour créer une méthode qui modifie la liste des villes
+- Créer un formulaire avec des inputs pour le nom de la vile, latitude et longitude
+- Appeler la méthode `addCity` dans le [pseudo-store](./src/store/Cities.js) lors de l’envoi du formulaire 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Bonus : Afficher la météo détaillée d'un ville
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Une seconde API sur `7timer` permet d'obtenir une météo plus détaillée avec une prévision toute les 3 heures (http://www.7timer.info/bin/civil.php?lon=0&lat=0&unit=metric&output=json)
+- Créer un nouveau point d'entrée sur le fichier d'api pour consommer ces données
+- Afficher le résultat de la météo détaillée sur la page de la ville
+- Ajouter un bouton pour afficher le mode simple ou le mode détaillé
