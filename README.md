@@ -28,7 +28,7 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 ## Step 2 : Afficher la météo du jour pour toutes les villes Zenika
 
 - Afficher toutes les villes sur la page d'accueil (https://reactjs.org/docs/lists-and-keys.html#rendering-multiple-components)
-- Utiliser les getters du [pseudo-store cities](./src/store/Cities.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (https://angular.io/guide/router#getting-route-information)
+- Utiliser les getters du [pseudo-store cities](./src/store/Cities.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (un exemple de code pour récupérer ce paramètre est disponible dans le fichier [`City`](./src/pages/city/City.jsx))
 - Appeler la méthode pour obtenir la météo du jour (`getCityTodayWeather`) via le fichier *weather.api.js* avec ces coordonnées
 
 ## Step 3 : Afficher la météo des 8 prochains jours pour chaque ville
