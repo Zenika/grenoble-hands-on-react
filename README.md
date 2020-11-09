@@ -28,7 +28,7 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 ## Step 2 : Afficher la météo du jour pour toutes les villes Zenika
 
 - Afficher toutes les villes sur la page d'accueil (https://reactjs.org/docs/lists-and-keys.html#rendering-multiple-components)
-- Utiliser les getters du [pseudo-store cities](./src/store/Cities.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (un exemple de code pour récupérer ce paramètre est disponible dans le fichier [`City`](./src/pages/city/City.jsx))
+- Utiliser les getters du [pseudo-store](./src/store/Store.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (un exemple de code pour récupérer ce paramètre est disponible dans le fichier [`City`](./src/pages/city/City.jsx))
 - Appeler la méthode pour obtenir la météo du jour (`getCityTodayWeather`) via le fichier *weather.api.js* avec ces coordonnées
 
 ## Step 3 : Afficher la météo des 8 prochains jours pour chaque ville
@@ -46,9 +46,9 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 
 - Créer un nouveau composant dans le dossier `pages`
 - Créer dans le router, dans le fichier *App.jsx*, une route liée à ce composant 
-- Modifier le pseudo-store cities pour créer une méthode qui modifie la liste des villes
+- Modifier le [pseudo-store](./src/store/Store.js) pour créer une méthode qui modifie la liste des villes
 - Créer un formulaire avec des inputs pour le nom de la vile, latitude et longitude
-- Appeler la méthode `addCity` dans le [pseudo-store](./src/store/Cities.js) lors de l’envoi du formulaire 
+- Appeler la méthode `addCity` dans le [pseudo-store](./src/store/Store.js) lors de l’envoi du formulaire 
 
 ## Bonus : Afficher la météo détaillée d'un ville
 
