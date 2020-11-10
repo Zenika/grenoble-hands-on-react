@@ -15,7 +15,7 @@ class City extends React.Component {
             cityLongitude: 5.703630,
             weather: {
                 date: 20201125,
-                weather: 'humid',
+                weather: 'cloudy',
                 temp2m: {
                     max: 12,
                     min: 7,
@@ -46,13 +46,24 @@ class City extends React.Component {
                 <LMap lat={this.state.cityLatitude} long={this.state.cityLongitude}/>
             </div>
             <div className="panel-block">
-                <ul>
-                    <li>Date: {this.state.weather.date}</li>
-                    <li>Forecast: {this.state.weather.weather}</li>
-                    <li>Min: {this.state.weather.temp2m.min}°C</li>
-                    <li>Max: {this.state.weather.temp2m.max}°C</li>
-                    <li>Wind speed: {this.state.weather.wind10m_max}m/s</li>
-                </ul>
+                <table className="table is-flex-grow-1">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Weather</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{this.state.weather.date}</td>
+                            <td><img src={'http://www.7timer.info/img/misc/about_civil_' + this.state.weather.weather + '.png'} alt="" /></td>
+                            <td>0°C</td>
+                            <td>30°C</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div className="panel-block">
                 <Link to="/" className="button is-rounded">
