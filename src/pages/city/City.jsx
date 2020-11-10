@@ -16,7 +16,8 @@ class City extends React.Component {
             cityLatitude: undefined,
             cityLongitude: undefined,
             weather: undefined,
-            cityName: ''
+            cityName: '',
+            displayInCelcius: true,
         };
     }
 
@@ -55,6 +56,24 @@ class City extends React.Component {
                 {this.state.cityLatitude && <LMap lat={this.state.cityLatitude} long={this.state.cityLongitude}/>}
             </div>
             <div className="panel-block">
+                <div className="control">
+                    <label className="radio">
+                        <input type="radio" name="degree"
+                            value="C"
+                            checked={this.state.displayInCelcius} 
+                            onChange={this.handleOptionChange} />
+                        C°
+                    </label>
+                    <label className="radio">
+                        <input type="radio" name="degree" 
+                            value="F"
+                            checked={!this.state.displayInCelcius} 
+                            onChange={this.handleOptionChange} />
+                        F°
+                    </label>
+                </div>
+            </div>
+            <div className="panel-block">
                 {this.state.weather ? (<table className="table is-flex-grow-1">
                     <thead>
                         <tr>
@@ -68,8 +87,8 @@ class City extends React.Component {
                         {this.state.weather.map(weather => (<tr key={weather.date}>
                             <td>{weather.date}</td>
                             <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
-                            <td>{weather.temp2m.min}°C</td>
-                            <td>{weather.temp2m.max}°C</td>
+                            <td>{this.formatTemp(weather.temp2m.min)}</td>
+                            <td>{this.formatTemp(weather.temp2m.max)}</td>
                         </tr>))}
                     </tbody>
                 </table>) : (<p>Loading...</p>)}
@@ -81,6 +100,16 @@ class City extends React.Component {
             </div>
             </article>
         </>;
+    }
+
+    handleOptionChange = changeEvent => {
+        this.setState({
+          displayInCelcius: changeEvent.target.value === 'C',
+        });
+    };
+
+    formatTemp(temperatureInCelcius) {
+        return this.state.displayInCelcius ? `${temperatureInCelcius}°C` : `${temperatureInCelcius * 9 / 5 + 32}°F`;
     }
 }
 
