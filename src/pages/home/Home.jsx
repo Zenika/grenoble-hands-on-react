@@ -16,11 +16,11 @@ class Home extends React.Component {
 
             <div className="panel">
                 {/* STEP 2 : itérer sur les villes en utilisant la fonction map pour produire plusieurs éléments <h2> */}
-                <h2 className="panel-block p-0">
-                    <Link className="subtitle p-4 is-flex-grow-1" to={this.state.cities[0]}>
-                        {this.state.cities[0]}
+                {this.state.cities.map(city => (<h2 className="panel-block p-0" key={city}>
+                    <Link className="subtitle p-4 is-flex-grow-1" to={city}>
+                        {city}
                     </Link>
-                </h2>
+                </h2>))}
             </div>
         </section>;
     }

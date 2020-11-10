@@ -13,8 +13,8 @@ class City extends React.Component {
     constructor(state) {
         super(state);
         this.state = {
-            cityLatitude: 45.183916,
-            cityLongitude: 5.703630,
+            cityLatitude: undefined,
+            cityLongitude: undefined,
             weather: undefined,
             cityName: ''
         };
@@ -25,17 +25,21 @@ class City extends React.Component {
         // STEP 0 : affichage des données (data-binding) et cycle de vie (lifecycle)
         this.setState({
             cityName: this.props.params.cityName,
-        })
+        });
 
-        // STEP 1 : Utiliser la méthode getCityTodayWeather de l'objet WeatherAPI (déjà importé) pour récuperer la météo
-        WeatherApi.getCityTodayWeather(this.state.cityLongitude, this.state.cityLatitude).then((result) => {
+        // STEP 2 : Utiliser la variable cityName pour récupérer la latitude et la longitude depuis l'objet Store (déjà importé) 
+        const {long, lat} = Store.getCityPosition(this.props.params.cityName);
+        this.setState({
+            cityLatitude: lat,
+            cityLongitude: long,
+        });
+        WeatherApi.getCityTodayWeather(long, lat).then((result) => {
             if (this.mounted) {
                 this.setState({
                     weather: result
                 });
             }
         });
-        // STEP 2 : Utiliser la variable cityName pour récupérer la latitude et la longitude depuis l'objet Store (déjà importé) 
     }
 
     componentWillUnmount() {
@@ -48,7 +52,7 @@ class City extends React.Component {
             <article className="panel is-primary">
             <div className="panel-heading"><h2>{this.state.cityName}</h2></div>
             <div className="panel-block">
-                <LMap lat={this.state.cityLatitude} long={this.state.cityLongitude}/>
+                {this.state.cityLatitude && <LMap lat={this.state.cityLatitude} long={this.state.cityLongitude}/>}
             </div>
             <div className="panel-block">
                 {this.state.weather ? (<table className="table is-flex-grow-1">
