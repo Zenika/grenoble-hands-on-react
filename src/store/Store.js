@@ -1,15 +1,15 @@
 class CityStore {
     cities = {
-        GRENOBLE: [45.183916, 5.703630],
-        SINGAPOUR: [1.295600, 103.858995],
-        BORDEAUX: [44.848089, -0.571017],
-        BREST: [48.389397, -4.499237],
-        MONTREAL: [45.523000, -73.581700],
-        LYON: [45.767443, 4.858798],
-        RENNES: [48.113409, -1.661249],
-        NANTES: [47.207408, -1.556187],
-        LILLE: [50.648670, 3.075520],
-        PARIS: [48.878932, 2.328487]
+        GRENOBLE: { lat: 45.183916, long: 5.703630},
+        SINGAPOUR: { lat: 1.295600, long: 103.858995},
+        BORDEAUX: { lat: 44.848089, long: -0.571017},
+        BREST: { lat: 48.389397, long: -4.499237},
+        MONTREAL: { lat: 45.523000, long: -73.581700},
+        LYON: { lat: 45.767443, long: 4.858798},
+        RENNES: { lat: 48.113409, long: -1.661249},
+        NANTES: { lat: 47.207408, long: -1.556187},
+        LILLE: { lat: 50.648670, long: 3.075520},
+        PARIS: { lat: 48.878932, long: 2.328487}
     };
 
     getCityPosition(cityName) {
@@ -19,7 +19,7 @@ class CityStore {
         return Object.keys(this.cities)
     }
     addCity(name, lat, long) {
-        this.cities[name] = [lat, long];
+        this.cities[name] = {lat, long};
     }
 }
 
