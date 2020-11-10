@@ -33,7 +33,7 @@ class City extends React.Component {
             cityLatitude: lat,
             cityLongitude: long,
         });
-        WeatherApi.getCityTodayWeather(long, lat).then((result) => {
+        WeatherApi.getCityNextWeekWeather(long, lat).then((result) => {
             if (this.mounted) {
                 this.setState({
                     weather: result
@@ -65,12 +65,12 @@ class City extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{this.state.weather.date}</td>
-                            <td><img src={'http://www.7timer.info/img/misc/about_civil_' + this.state.weather.weather + '.png'} alt="" /></td>
-                            <td>{this.state.weather.temp2m.min}°C</td>
-                            <td>{this.state.weather.temp2m.max}°C</td>
-                        </tr>
+                        {this.state.weather.map(weather => (<tr key={weather.date}>
+                            <td>{weather.date}</td>
+                            <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
+                            <td>{weather.temp2m.min}°C</td>
+                            <td>{weather.temp2m.max}°C</td>
+                        </tr>))}
                     </tbody>
                 </table>) : (<p>Loading...</p>)}
             </div>
