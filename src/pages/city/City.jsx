@@ -16,8 +16,10 @@ class City extends React.Component {
             cityLatitude: undefined,
             cityLongitude: undefined,
             weather: undefined,
+            detailedWeather: undefined,
             cityName: '',
             displayInCelcius: true,
+            displaySimpleForecast: true,
         };
     }
 
@@ -38,6 +40,13 @@ class City extends React.Component {
             if (this.mounted) {
                 this.setState({
                     weather: result
+                });
+            }
+        });
+        WeatherApi.getDetailedCityWeather(long, lat).then((result) => {
+            if (this.mounted) {
+                this.setState({
+                    detailedWeather: result
                 });
             }
         });
@@ -72,27 +81,68 @@ class City extends React.Component {
                         F°
                     </label>
                 </div>
+                <div className="control">
+                    <label className="radio">
+                        <input type="radio" name="mode"
+                            value="simple"
+                            checked={this.state.displaySimpleForecast} 
+                            onChange={this.handleModeChange} />
+                        Simple
+                    </label>
+                    <label className="radio">
+                        <input type="radio" name="mode" 
+                            value="detailed"
+                            checked={!this.state.displaySimpleForecast} 
+                            onChange={this.handleModeChange} />
+                        Detailed
+                    </label>
+                </div>
             </div>
-            <div className="panel-block">
-                {this.state.weather ? (<table className="table is-flex-grow-1">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Weather</th>
-                            <th>Min</th>
-                            <th>Max</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.weather.map(weather => (<tr key={weather.date}>
-                            <td>{weather.date}</td>
-                            <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
-                            <td>{this.formatTemp(weather.temp2m.min)}</td>
-                            <td>{this.formatTemp(weather.temp2m.max)}</td>
-                        </tr>))}
-                    </tbody>
-                </table>) : (<p>Loading...</p>)}
-            </div>
+            {  
+                this.state.displaySimpleForecast
+                ? (
+                    <div className="panel-block">
+                        {this.state.weather ? (<table className="table is-flex-grow-1">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Weather</th>
+                                    <th>Min</th>
+                                    <th>Max</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.weather.map(weather => (<tr key={weather.date}>
+                                    <td>{weather.date}</td>
+                                    <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
+                                    <td>{this.formatTemp(weather.temp2m.min)}</td>
+                                    <td>{this.formatTemp(weather.temp2m.max)}</td>
+                                </tr>))}
+                            </tbody>
+                        </table>) : (<p>Loading...</p>)}
+                    </div>
+                )
+                : (
+                    <div className="panel-block">
+                        {this.state.detailedWeather ? (<table className="table is-flex-grow-1">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Weather</th>
+                                    <th>Temp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.detailedWeather.map(weather => (<tr key={weather.timepoint}>
+                                    <td>{weather.timepoint}h from now</td>
+                                    <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
+                                    <td>{this.formatTemp(weather.temp2m)}</td>
+                                </tr>))}
+                            </tbody>
+                        </table>) : (<p>Loading...</p>)}
+                    </div>
+                )
+            }
             <div className="panel-block">
                 <Link to="/" className="button is-rounded">
                 Go back home
@@ -105,6 +155,12 @@ class City extends React.Component {
     handleOptionChange = changeEvent => {
         this.setState({
           displayInCelcius: changeEvent.target.value === 'C',
+        });
+    };
+
+    handleModeChange = changeEvent => {
+        this.setState({
+          displaySimpleForecast: changeEvent.target.value === 'simple',
         });
     };
 
