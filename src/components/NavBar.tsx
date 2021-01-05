@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function NavBar() {
+const NavBar: React.FunctionComponent = () => {
     return <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
         <div className="container">
             <div className="navbar-brand">

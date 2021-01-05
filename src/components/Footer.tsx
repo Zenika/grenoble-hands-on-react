@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Footer() {
+const Footer : React.FunctionComponent = () =>{
     return <footer className="footer">
         <p className="content has-text-centered">
         Developed by 
