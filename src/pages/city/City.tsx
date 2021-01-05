@@ -1,16 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withRouter } from "../../utils/withRouter";
+import { IInjectedProps, withRouter } from "../../utils/withRouter";
 import LMap from "../../components/LMap";
 import WeatherApi from "../../api/weather.api";
 import Store from "../../store/Store";
 import { IDetailedWeather, IWeather } from "../../types/WeatherTypes";
 
-interface ICityProps {
-  params: {
-    cityName: string;
-  };
-}
 
 interface ICityState {
   cityName: string;
@@ -22,10 +17,10 @@ interface ICityState {
   detailedWeather?: IDetailedWeather[];
 }
 
-class City extends React.Component<ICityProps, ICityState> {
+class City extends React.Component<IInjectedProps, ICityState> {
   mounted = false;
 
-  constructor(props: ICityProps) {
+  constructor(props: IInjectedProps) {
     super(props);
     this.state = {
       cityLatitude: undefined,
