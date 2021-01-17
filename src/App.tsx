@@ -7,7 +7,7 @@ import AddCity from './pages/city/AddCity';
 import Home from './pages/home/Home';
 import './App.css';
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
       <NavBar />
