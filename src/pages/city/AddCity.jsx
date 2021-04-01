@@ -22,28 +22,30 @@ class AddCity extends React.Component {
             <div className="card">
               <form className="card-content" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="field">
-                  <label className="label">Name</label>
+                  <label htmlFor="name" className="label">Name</label>
                   <div className="control">
-                    <input className="input" type="text" name="name" placeholder="City name" 
+                    <input id="name" className="input" type="text" name="name" placeholder="ex : TOULOUSE" 
                         value={this.state.name} onChange={this.handleChange('name')}/>
                   </div>
-                  {this.state.error.name && <p className="help is-danger">Name is required</p>}
+                  {this.state.error.name && <label htmlFor="name" className="help is-danger">Name is required</label>}
                 </div>
                 <div className="field">
-                  <label className="label">Latitude</label>
+                  <label htmlFor="latitude" className="label">Latitude
                   <div className="control">
-                    <input className="input" type="text" name="latitude" placeholder="Latitude" 
+                    <input id="latitude" className="input" type="text" name="latitude" placeholder="ex: 43.6000" 
                         value={this.state.latitude} onChange={this.handleChange('latitude')}/>
                   </div>
                   {this.state.error.latitude && <p className="help is-danger">Latitude is required and must be &gt; -180 and &lt; 180</p>}
+                  </label>
                 </div>
                 <div className="field">
-                  <label className="label">Longitude</label>
+                  <label htmlFor="longitude" className="label">Longitude
                   <div className="control">
-                    <input className="input" type="text" name="longitude" placeholder="Longitude" 
+                    <input id="longitude" className="input" type="text" name="longitude" placeholder="ex : 1.4333" 
                         value={this.state.longitude} onChange={this.handleChange('longitude')}/>
                   </div>
                   {this.state.error.longitude && <p className="help is-danger">Longitude is required and must be &gt; -180 and &lt; 180</p>}
+                  </label>
                 </div>
                 <div className="control">
                   <button type="submit" className="button is-primary" disabled={false}>Create</button>

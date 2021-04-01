@@ -66,18 +66,22 @@ class City extends React.Component {
             </div>
             <div className="panel-block">
                 <div className="control">
-                    <label className="radio">
+                    <label htmlFor="celcius" className="radio">
                         <input type="radio" name="degree"
                             value="C"
+                            id="celcius"
                             checked={this.state.displayInCelcius} 
-                            onChange={this.handleOptionChange} />
+                            onChange={this.handleOptionChange}
+                            aria-controls="weather" />
                         C°
                     </label>
-                    <label className="radio">
+                    <label htmlFor="fahrenheit" className="radio">
                         <input type="radio" name="degree" 
                             value="F"
+                            id="fahrenheit"
                             checked={!this.state.displayInCelcius} 
-                            onChange={this.handleOptionChange} />
+                            onChange={this.handleOptionChange}
+                            aria-controls="weather" />
                         F°
                     </label>
                 </div>
@@ -86,14 +90,16 @@ class City extends React.Component {
                         <input type="radio" name="mode"
                             value="simple"
                             checked={this.state.displaySimpleForecast} 
-                            onChange={this.handleModeChange} />
+                            onChange={this.handleModeChange}
+                            aria-controls="weather" />
                         Simple
                     </label>
                     <label className="radio">
                         <input type="radio" name="mode" 
                             value="detailed"
                             checked={!this.state.displaySimpleForecast} 
-                            onChange={this.handleModeChange} />
+                            onChange={this.handleModeChange}
+                            aria-controls="weather" />
                         Detailed
                     </label>
                 </div>
@@ -101,20 +107,20 @@ class City extends React.Component {
             {  
                 this.state.displaySimpleForecast
                 ? (
-                    <div className="panel-block">
+                    <div id="weather" role="region" className="panel-block" aria-live="polite">
                         {this.state.weather ? (<table className="table is-flex-grow-1">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Weather</th>
-                                    <th>Min</th>
-                                    <th>Max</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Weather</th>
+                                    <th scope="col">Min</th>
+                                    <th scope="col">Max</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {this.state.weather.map(weather => (<tr key={weather.date}>
-                                    <td>{weather.date}</td>
-                                    <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
+                                    <td>{this.formatDate(weather.date)}</td>
+                                    <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt={weather.weather} /></td>
                                     <td>{this.formatTemp(weather.temp2m.min)}</td>
                                     <td>{this.formatTemp(weather.temp2m.max)}</td>
                                 </tr>))}
@@ -123,19 +129,19 @@ class City extends React.Component {
                     </div>
                 )
                 : (
-                    <div className="panel-block">
+                    <div id="weather" role="region" className="panel-block" aria-live="polite">
                         {this.state.detailedWeather ? (<table className="table is-flex-grow-1">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Weather</th>
-                                    <th>Temp</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Weather</th>
+                                    <th scope="col"><abbr title="Temperature">Temp</abbr></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {this.state.detailedWeather.map(weather => (<tr key={weather.timepoint}>
                                     <td>{weather.timepoint}h from now</td>
-                                    <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
+                                    <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt={weather.weather} /></td>
                                     <td>{this.formatTemp(weather.temp2m)}</td>
                                 </tr>))}
                             </tbody>
@@ -166,6 +172,11 @@ class City extends React.Component {
 
     formatTemp(temperatureInCelcius) {
         return this.state.displayInCelcius ? `${temperatureInCelcius}°C` : `${temperatureInCelcius * 9 / 5 + 32}°F`;
+    }
+
+    formatDate(date) {
+        const dateStr = date.toString();
+        return `${dateStr.slice(6, 8)}/${dateStr.slice(4, 6)}/${dateStr.slice(0, 4)}`;
     }
 }
 

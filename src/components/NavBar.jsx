@@ -5,8 +5,8 @@ function NavBar() {
     return <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
         <div className="container">
             <div className="navbar-brand">
-            <h1 className="title navbar-item">
-                Zenika Cities weather
+            <h1 className="title navbar-start">
+                <a href="/" className="navbar-item">Zenika Cities weather</a>
             </h1>
             </div>
             <div className="navbar-menu">

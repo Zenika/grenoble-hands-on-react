@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
 
-      <section className="section">
+      <main className="section">
         <div className="container">
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -20,7 +20,7 @@ function App() {
                 <Route path=":cityName" element={<City />} />
             </Routes>
         </div>
-      </section>
+      </main>
 
       <Footer />
     </BrowserRouter>
