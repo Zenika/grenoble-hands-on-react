@@ -1,27 +1,25 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import City from './pages/city/City';
-import Home from './pages/home/Home';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { NavBar } from './components/NavBar'
+import { Footer } from './components/Footer'
+import { CityPage } from './pages/city/CityPage.jsx'
+import { HomePage } from './pages/home/HomePage.jsx'
+import './App.css'
 
-function App() {
+export const App = () => {
   return (
     <BrowserRouter>
       <NavBar />
 
       <section className="section">
         <div className="container">
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path=":cityName" element={<City />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path=":cityName" element={<CityPage />} />
+          </Routes>
+        </div>
       </section>
 
       <Footer />
     </BrowserRouter>
-  );
+  )
 }
-
-export default App;

@@ -32,6 +32,8 @@
       {
         "allowConstantExport": true
       }
-    ]
+    ],
+    "semi": ["error", "never"],
+    "eol-last": "error"
   }
 }

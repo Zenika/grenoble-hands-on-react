@@ -21,14 +21,14 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 ## Step 1 : Afficher la météo du jour pour Grenoble
 
 - Sur la page d’une ville récupérer et afficher la météo du jour.
-- Le page d’une ville correspond au composant [`City`](./src/pages/city/City.jsx) 
+- Le page d’une ville correspond au composant [`CityPage`](./src/pages/city/CityPage.jsx) 
 - Utiliser le [service weather](./src/api/weather.api.js) (`getCityTodayWeather`) pour récupérer la météo en function des coordonnées GPS de Grenoble lorsque le composant est créé : [`componentDidMount()`](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class)
 - Binder les données de la météo du jour avec le template (https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)
 
 ## Step 2 : Afficher la météo du jour pour toutes les villes Zenika
 
-- Afficher toutes les villes sur la page d'accueil [`Home`](./src/pages/home/Home.jsx) (https://reactjs.org/docs/lists-and-keys.html#rendering-multiple-components)
-- Utiliser les getters du [pseudo-store](./src/store/Store.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (un exemple de code pour récupérer ce paramètre est disponible dans le fichier [`City`](./src/pages/city/City.jsx))
+- Afficher toutes les villes sur la page d'accueil [`HomePage`](./src/pages/home/HomePage.jsx) (https://reactjs.org/docs/lists-and-keys.html#rendering-multiple-components)
+- Utiliser les getters du [pseudo-store](./src/store/Store.js) pour récupérer les coordonnées de la ville par son nom à partir des `params` de la route `cityName` (un exemple de code pour récupérer ce paramètre est disponible dans le fichier [`CityPage`](./src/pages/city/CityPage.jsx))
 - Appeler la méthode pour obtenir la météo du jour (`getCityTodayWeather`) via le fichier *weather.api.js* avec ces coordonnées
 
 ## Step 3 : Afficher la météo des 8 prochains jours pour chaque ville
