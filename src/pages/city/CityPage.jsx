@@ -3,21 +3,16 @@ import { Link, useParams } from 'react-router-dom'
 import { LMap } from '../../components/LMap'
 import { getCityTodayWeather } from '../../api/weather.api'
 import { displayDate } from '../../utils/datetime.util.js'
-import './CityPage.css'
-
-/* eslint-disable */
 import Store from '../../store/Store'
-/* eslint-enable */
+import './CityPage.css'
 
 export const CityPage = () => {
   const { cityName } = useParams()
-  // STEP 2 : Utiliser la variable cityName pour récupérer la latitude et la longitude depuis l'objet Store (déjà importé)
-  const [longitude] = useState(5.70363)
-  const [latitude] = useState(45.183916)
+  const { lat, long } = Store.getCityPosition(cityName)
   const [weather, setWeather] = useState(null)
 
   useEffect(() => {
-    getCityTodayWeather(longitude, latitude)
+    getCityTodayWeather(long, lat)
       .then((weather) => setWeather(weather))
       .catch((err) => console.log(err))
   }, [])
@@ -30,7 +25,7 @@ export const CityPage = () => {
           <h2>{cityName}</h2>
         </div>
         <div className="panel-block">
-          <LMap latitude={latitude} longitude={longitude} />
+          <LMap latitude={lat} longitude={long} />
         </div>
         <div className="panel-block">
           <table className="table is-flex-grow-1">

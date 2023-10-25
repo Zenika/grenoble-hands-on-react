@@ -9,12 +9,11 @@ export const HomePage = () => {
     <section>
       <h2 className="title">Offices</h2>
       <div className="panel">
-        {/* STEP 2 : itérer sur les villes en utilisant la fonction map pour produire plusieurs éléments <h2> */}
-        <h2 className="panel-block p-0">
-          <Link className="subtitle p-4 is-flex-grow-1" to={cities[0]}>
-            {cities[0]}
+        {cities.map((city) => (
+          <Link to={city} key={city} className="panel-block p-4">
+            <h2 className="subtitle">{city}</h2>
           </Link>
-        </h2>
+        ))}
       </div>
     </section>
   )
