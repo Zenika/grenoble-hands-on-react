@@ -1,5 +1,5 @@
-export const NavBar = () => {
-  return <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+export const NavBar = () => (
+  <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
     <div className="container">
       <div className="navbar-brand">
         <h1 className="title navbar-item">
@@ -13,4 +13,4 @@ export const NavBar = () => {
       </div>
     </div>
   </nav>
-}
+)

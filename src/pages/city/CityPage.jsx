@@ -4,16 +4,16 @@ import { LMap } from '../../components/LMap'
 /* eslint-disable */
 import WeatherApi from '../../api/weather.api'
 import Store from '../../store/Store'
+import { displayDate } from '../../utils/datetime.util.js'
 
 /* eslint-enable */
-
 
 export const CityPage = () => {
   const { cityName } = useParams()
   const [latitude] = useState(45.183916)
   const [longitude] = useState(5.703630)
   const [weather] = useState({
-    date: 20201125,
+    date: displayDate(20201025),
     weather: 'cloudy',
     temp2m: {
       max: 12,
@@ -48,8 +48,8 @@ export const CityPage = () => {
             <tr>
               <td>{weather.date}</td>
               <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
-              <td>0°C</td>
-              <td>30°C</td>
+              <td>0 °C</td>
+              <td>30 °C</td>
             </tr>
             </tbody>
           </table>

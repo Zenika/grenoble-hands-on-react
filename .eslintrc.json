@@ -12,7 +12,8 @@
   ],
   "ignorePatterns": [
     "dist",
-    "*.test.*"
+    "*.test.*",
+    "*.spec.*"
   ],
   "parserOptions": {
     "ecmaVersion": 2022,
@@ -34,6 +35,6 @@
       }
     ],
     "semi": ["error", "never"],
-    "eol-last": "error"
+    "no-irregular-whitespace": "off"
   }
 }

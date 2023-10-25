@@ -1,15 +1,26 @@
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import './LMap.css'
+import { useEffect, useRef } from 'react'
+import L from 'leaflet'
 
-// eslint-disable-next-line react/prop-types
-export const LMap = ({ latitude, longitude }) => {
+/* eslint-disable react/prop-types */
+export const LMap = (props) => {
+  const mapRef = useRef(null)
+
+  useEffect(() => {
+    mapRef.current = L.map('mapId', {
+      center: [props.latitude, props.longitude],
+      zoom: 13
+    })
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(mapRef.current)
+    L.marker([props.latitude, props.longitude]).addTo(mapRef.current)
+
+    return () => mapRef.current.remove()
+  }, [])
+
   return (
-    <MapContainer id={'mapId'} center={[latitude, longitude]} zoom={13}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[latitude, longitude]} />
-    </MapContainer>
+    <div id="mapId"></div>
   )
 }

@@ -2,15 +2,12 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
-.vscode
 
 # testing
 /coverage
 
 # production
-/build
+/dist
 
 # misc
 .DS_Store
@@ -24,11 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode
+.vscode/extensions.json

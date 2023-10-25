@@ -5,21 +5,19 @@ import { CityPage } from './pages/city/CityPage.jsx'
 import { HomePage } from './pages/home/HomePage.jsx'
 import './App.css'
 
-export const App = () => {
-  return (
-    <BrowserRouter>
-      <NavBar />
+export const App = () => (
+  <BrowserRouter>
+    <NavBar />
 
-      <section className="section">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path=":cityName" element={<CityPage />} />
-          </Routes>
-        </div>
-      </section>
+    <section className="section">
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path=":cityName" element={<CityPage />} />
+        </Routes>
+      </div>
+    </section>
 
-      <Footer />
-    </BrowserRouter>
-  )
-}
+    <Footer />
+  </BrowserRouter>
+)
