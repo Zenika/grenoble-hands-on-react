@@ -1,31 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { LMap } from '../../components/LMap'
-import './CityPage.css'
-/* eslint-disable */
-import WeatherApi from '../../api/weather.api'
-import Store from '../../store/Store'
+import { getCityTodayWeather } from '../../api/weather.api'
 import { displayDate } from '../../utils/datetime.util.js'
+import './CityPage.css'
 
+/* eslint-disable */
+import Store from '../../store/Store'
 /* eslint-enable */
 
 export const CityPage = () => {
   const { cityName } = useParams()
-  const [latitude] = useState(45.183916)
-  const [longitude] = useState(5.70363)
-  const [weather] = useState({
-    date: displayDate(20201025),
-    weather: 'cloudy',
-    temp2m: {
-      max: 12,
-      min: 7
-    },
-    wind10m_max: 2
-  })
-
-  // STEP 1 : Utiliser la méthode getCityTodayWeather de l'objet WeatherAPI (déjà importé) pour récupérer la météo
-
   // STEP 2 : Utiliser la variable cityName pour récupérer la latitude et la longitude depuis l'objet Store (déjà importé)
+  const [longitude] = useState(5.70363)
+  const [latitude] = useState(45.183916)
+  const [weather, setWeather] = useState(null)
+
+  useEffect(() => {
+    getCityTodayWeather(longitude, latitude)
+      .then((weather) => setWeather(weather))
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
     <>
@@ -48,19 +43,21 @@ export const CityPage = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{weather.date}</td>
-                <td>
-                  <img
-                    src={`http://www.7timer.info/img/misc/about_civil_${weather.weather}.png`}
-                    alt="meteo_image"
-                    className="cropped-image"
-                    width={80}
-                  />
-                </td>
-                <td>0 °C</td>
-                <td>30 °C</td>
-              </tr>
+              {weather && (
+                <tr>
+                  <td>{displayDate(weather.date)}</td>
+                  <td>
+                    <img
+                      src={`http://www.7timer.info/img/misc/about_civil_${weather.weather}.png`}
+                      alt="meteo_image"
+                      className="cropped-image"
+                      width={80}
+                    />
+                  </td>
+                  <td>{weather.temp2m.min} °C</td>
+                  <td>{weather.temp2m.max} °C</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
