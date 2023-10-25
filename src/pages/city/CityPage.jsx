@@ -4,10 +4,12 @@ import { LMap } from '../../components/LMap'
 import { getCityNextWeekWeather } from '../../api/weather.api'
 import { displayDate } from '../../utils/datetime.util.js'
 import Store from '../../store/Store'
+import { useDegree } from '../../hooks/useDegree.js'
 import './CityPage.css'
 
 export const CityPage = () => {
   const { cityName } = useParams()
+  const { degree, setDegree, getTemperature } = useDegree()
   const { lat, long } = Store.getCityPosition(cityName)
   const [weathers, setWeathers] = useState([])
 
@@ -26,6 +28,22 @@ export const CityPage = () => {
         </div>
         <div className="panel-block">
           <LMap latitude={lat} longitude={long} />
+        </div>
+        <div className="panel-block">
+          <div className="buttons has-addons">
+            <button
+              onClick={() => setDegree('C')}
+              className={`button ${degree === 'C' ? 'is-primary' : ''}`}
+            >
+              °C
+            </button>
+            <button
+              onClick={() => setDegree('F')}
+              className={`button ${degree === 'F' ? 'is-primary' : ''}`}
+            >
+              °F
+            </button>
+          </div>
         </div>
         <div className="panel-block">
           <table className="table is-flex-grow-1">
@@ -49,8 +67,8 @@ export const CityPage = () => {
                       width={80}
                     />
                   </td>
-                  <td>{weather.temp2m.min} °C</td>
-                  <td>{weather.temp2m.max} °C</td>
+                  <td>{getTemperature(weather.temp2m.min)}</td>
+                  <td>{getTemperature(weather.temp2m.max)}</td>
                 </tr>
               ))}
             </tbody>
