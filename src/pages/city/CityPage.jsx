@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { LMap } from '../../components/LMap'
-import { getCityTodayWeather } from '../../api/weather.api'
+import { getCityNextWeekWeather } from '../../api/weather.api'
 import { displayDate } from '../../utils/datetime.util.js'
 import Store from '../../store/Store'
 import './CityPage.css'
@@ -9,11 +9,11 @@ import './CityPage.css'
 export const CityPage = () => {
   const { cityName } = useParams()
   const { lat, long } = Store.getCityPosition(cityName)
-  const [weather, setWeather] = useState(null)
+  const [weathers, setWeathers] = useState([])
 
   useEffect(() => {
-    getCityTodayWeather(long, lat)
-      .then((weather) => setWeather(weather))
+    getCityNextWeekWeather(long, lat)
+      .then((weathers) => setWeathers(weathers))
       .catch((err) => console.log(err))
   }, [])
 
@@ -38,8 +38,8 @@ export const CityPage = () => {
               </tr>
             </thead>
             <tbody>
-              {weather && (
-                <tr>
+              {weathers.map((weather, index) => (
+                <tr key={`${weather}-${index}`}>
                   <td>{displayDate(weather.date)}</td>
                   <td>
                     <img
@@ -52,7 +52,7 @@ export const CityPage = () => {
                   <td>{weather.temp2m.min} °C</td>
                   <td>{weather.temp2m.max} °C</td>
                 </tr>
-              )}
+              ))}
             </tbody>
           </table>
         </div>
