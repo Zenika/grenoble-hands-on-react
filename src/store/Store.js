@@ -19,10 +19,6 @@ class CityStore {
   getCities() {
     return Object.keys(this.cities)
   }
-
-  addCity(name, lat, long) {
-    this.cities[name] = { lat, long }
-  }
 }
 
 export default new CityStore()

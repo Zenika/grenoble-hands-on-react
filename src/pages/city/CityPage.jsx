@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { LMap } from '../../components/LMap'
+import './CityPage.css'
 /* eslint-disable */
 import WeatherApi from '../../api/weather.api'
 import Store from '../../store/Store'
@@ -28,7 +29,7 @@ export const CityPage = () => {
 
   return (
     <>
-      <h1 className="title">Cities weather</h1>
+      <h2 className="title">Cities weather</h2>
       <article className="panel is-primary">
         <div className="panel-heading"><h2>{cityName}</h2></div>
         <div className="panel-block">
@@ -47,7 +48,7 @@ export const CityPage = () => {
             <tbody>
             <tr>
               <td>{weather.date}</td>
-              <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" /></td>
+              <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" width={80} /></td>
               <td>0 °C</td>
               <td>30 °C</td>
             </tr>

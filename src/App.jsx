@@ -3,7 +3,7 @@ import { NavBar } from './components/NavBar'
 import { Footer } from './components/Footer'
 import { CityPage } from './pages/city/CityPage.jsx'
 import { HomePage } from './pages/home/HomePage.jsx'
-import './App.css'
+import './css/App.css'
 
 export const App = () => (
   <BrowserRouter>

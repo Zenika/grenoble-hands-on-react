@@ -39,16 +39,16 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 ## Step 4 : Avoir la possibilité de passer en Fahrenheit
 
 - Ajouter des radios boutons, checkbox ou n’importe quoi d’autre pour choisir l’unité à afficher 
-- Créer une fonction pour retourner les degrés à afficher dans la bonne unité
+- Créer un [custom hook](https://react.dev/learn/reusing-logic-with-custom-hooks) qui aura un state `degree` et une methode associée qui retournera la température dans la bonne unité  
 - Appliquer la fonction de conversion `F = C * 9/5 + 32`
 
 ## Step 5 : Ajouter un page pour enregistrer une nouvelle ville
 
-- Créer un nouveau composant dans le dossier `pages`
+- Créer un nouveau composant dans le dossier `pages/city`
 - Créer dans le router, dans le fichier *App.jsx*, une route liée à ce composant 
-- Modifier le [pseudo-store](./src/store/Store.js) pour créer une méthode qui modifie la liste des villes
-- Créer un formulaire avec des inputs pour le nom de la vile, latitude et longitude
-- Appeler la méthode `addCity` dans le [pseudo-store](./src/store/Store.js) lors de l’envoi du formulaire 
+- Créer une methode `addCity` dans le [pseudo-store](./src/store/Store.js) qui permet d'ajouter une ville à la liste
+- Créer un formulaire avec des inputs pour le nom de la ville, latitude et longitude
+- Appeler la méthode `addCity` du [pseudo-store](./src/store/Store.js) lors de l’envoi du formulaire 
 
 ## Bonus : Afficher la météo détaillée d'un ville
 
@@ -56,6 +56,7 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 - Créer un nouveau point d'entrée sur le fichier d'api pour consommer ces données
 - Afficher le résultat de la météo détaillée sur la page de la ville
 - Ajouter un bouton pour afficher le mode simple ou le mode détaillé
+- Afficher un loader pendant le chargement des données pour faire patienter l'utilisateur, avec une durée d'au moins 2 secondes
 
 ## Correction
 
