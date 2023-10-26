@@ -48,7 +48,14 @@ export const CityPage = () => {
             <tbody>
             <tr>
               <td>{weather.date}</td>
-              <td><img src={'http://www.7timer.info/img/misc/about_civil_' + weather.weather + '.png'} alt="" width={80} /></td>
+              <td>
+                <img
+                  src={`http://www.7timer.info/img/misc/about_civil_${weather.weather}.png`}
+                  alt="meteo_image"
+                  className="cropped-image"
+                  width={80}
+                />
+              </td>
               <td>0 °C</td>
               <td>30 °C</td>
             </tr>
