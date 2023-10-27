@@ -2,7 +2,13 @@
   vertical-align: middle !important;
 }
 
-.cropped-image {
+.cropped-image-day {
   clip-path: circle(20px at 20px);
+  margin-left: 10px;
+}
+
+.cropped-image-night {
+  clip-path: circle(20px at 60px);
+  transform: translateX(-40px);
   margin-left: 10px;
 }
