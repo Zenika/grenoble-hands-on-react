@@ -1,10 +1,10 @@
 # Instructions
 
 ## Build app
-
+Install [pnpm package manager](https://pnpm.io/fr/installation)
 ```
-yarn install
-yarn start
+pnpm install
+pnpm dev
 ```
 
 ## Dépendances

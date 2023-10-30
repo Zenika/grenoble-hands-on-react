@@ -19,7 +19,7 @@ export const LMap = (props) => {
     L.marker([props.latitude, props.longitude]).addTo(mapRef.current)
 
     return () => mapRef.current.remove()
-  }, [])
+  }, [props.latitude, props.longitude])
 
   return <div id="mapId"></div>
 }
