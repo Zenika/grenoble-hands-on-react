@@ -12,7 +12,8 @@ export const LMap = (props) => {
       zoom: 13
     })
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
       maxZoom: 18
     }).addTo(mapRef.current)
     L.marker([props.latitude, props.longitude]).addTo(mapRef.current)
@@ -20,7 +21,5 @@ export const LMap = (props) => {
     return () => mapRef.current.remove()
   }, [])
 
-  return (
-    <div id="mapId"></div>
-  )
+  return <div id="mapId"></div>
 }
