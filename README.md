@@ -71,25 +71,25 @@ Pour plus d'information sur la customisation, nous vous invitons à consulter la
 
 <details>
   <summary>Step 2</summary>
-  https://github.com/Zenika/grenoble-hands-on-vuejs/compare/step1...step2
+  https://github.com/Zenika/grenoble-hands-on-react/compare/step1...step2
 </details>
 
 <details>
   <summary>Step 3</summary>
-  https://github.com/Zenika/grenoble-hands-on-vuejs/compare/step2...step3
+  https://github.com/Zenika/grenoble-hands-on-react/compare/step2...step3
 </details>
 
 <details>
   <summary>Step 4</summary>
-  https://github.com/Zenika/grenoble-hands-on-vuejs/compare/step3...step4
+  https://github.com/Zenika/grenoble-hands-on-react/compare/step3...step4
 </details>
 
 <details>
   <summary>Step 5</summary>
-  https://github.com/Zenika/grenoble-hands-on-vuejs/compare/step4...step5
+  https://github.com/Zenika/grenoble-hands-on-react/compare/step4...step5
 </details>
 
 <details>
   <summary>Bonus</summary>
-  https://github.com/Zenika/grenoble-hands-on-vuejs/compare/step5...bonus
+  https://github.com/Zenika/grenoble-hands-on-react/compare/step5...bonus
 </details>
