@@ -42,7 +42,7 @@
 	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
 	"portsAttributes": {
-		"3000": {
+		"5173": {
 			"label": "Hello Remote World",
 			"onAutoForward": "notify"
 		}
@@ -51,7 +51,7 @@
 
 	
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn install",
+	"postCreateCommand": "sudo corepack enable && corepack prepare pnpm@latest-8 --activate && pnpm  install"
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
