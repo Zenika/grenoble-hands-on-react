@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Test
           command: |
-            pnpm exec vitest run
+            pnpm test
       - run:
           name: Build
           command: |

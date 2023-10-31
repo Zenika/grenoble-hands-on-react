@@ -1,7 +1,9 @@
 # Instructions
 
 ## Build app
+
 Install [pnpm package manager](https://pnpm.io/fr/installation)
+
 ```
 pnpm install
 pnpm dev
