@@ -1,0 +1,8 @@
+.table td {
+  vertical-align: middle !important;
+}
+
+.cropped-image {
+  clip-path: circle(20px at 20px);
+  margin-left: 10px;
+}

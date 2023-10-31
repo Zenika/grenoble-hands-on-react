@@ -1,23 +1,25 @@
-import React from 'react';
-import L from 'leaflet';
-import './LMap.css';
+import './LMap.css'
+import { useEffect, useRef } from 'react'
+import L from 'leaflet'
 
-class LMap extends React.Component {
+/* eslint-disable react/prop-types */
+export const LMap = (props) => {
+  const mapRef = useRef(null)
 
-    componentDidMount() {
-        this.map = L.map('mapId').setView([this.props.lat, this.props.long], 13);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-            tileSize: 512,
-            zoomOffset: -1,
-        }).addTo(this.map);
-        L.marker([this.props.lat, this.props.long]).addTo(this.map)
-    }
+  useEffect(() => {
+    mapRef.current = L.map('mapId', {
+      center: [props.latitude, props.longitude],
+      zoom: 13
+    })
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(mapRef.current)
+    L.marker([props.latitude, props.longitude]).addTo(mapRef.current)
 
-    render() {
-        return (<div id="mapId"/>);
-    }
+    return () => mapRef.current.remove()
+  }, [props.latitude, props.longitude])
+
+  return <div id="mapId"></div>
 }
-
-export default LMap;
