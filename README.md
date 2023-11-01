@@ -1,5 +1,9 @@
 # Instructions
 
+## Build status
+
+![CircleCI](https://img.shields.io/circleci/build/github/Zenika/grenoble-hands-on-react)
+
 ## Build app
 
 Install [pnpm package manager](https://pnpm.io/fr/installation)

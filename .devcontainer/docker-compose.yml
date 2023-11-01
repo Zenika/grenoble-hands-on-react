@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  devcontainer:
+    image: zenika/hands-on-react:0.1
+    build: .
+    container_name: hands-on-react-dev-container
+    hostname: hands-on-react-dev.local
+    working_dir: /workspace
+    volumes:
+       - ..:/workspace
+    command: sleep infinity
